@@ -1,6 +1,6 @@
 <template>
     <div class="list-container">
-        <div class="file-item" v-for="file in filelists">
+        <div class="file-item" v-for="file in files">
             <div class="file-image img-large"></div>
             <div class="file-name">{{file.name}}</div>
         </div>
@@ -9,48 +9,7 @@
 <script>
     export default {
         name: 'filelist',
-        data () {
-            return {
-                filelists: [
-                    {
-                        name: '第一期',
-                        size: 2000
-                    },
-                    {
-                        name: '第二期',
-                        size: 2000
-                    },
-                    {
-                        name: '第三期',
-                        size: 2000
-                    },
-                    {
-                        name: '第4期',
-                        size: 2000
-                    },
-                    {
-                        name: '第5期',
-                        size: 2000
-                    },
-                    {
-                        name: '第6期',
-                        size: 2000
-                    },
-                    {
-                        name: '第7期',
-                        size: 2000
-                    },
-                    {
-                        name: '第8期',
-                        size: 2000
-                    },
-                    {
-                        name: '第9期',
-                        size: 2000
-                    }
-                ]
-            }
-        }
+        props: ['files']
     }
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
@@ -87,6 +46,8 @@
                 text-overflow: ellipsis;
                 overflow: hidden;
                 margin: 6px 5px 5px;
+                color: #424e67;
+                font-size: 12px;
             }
         }
     }

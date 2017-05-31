@@ -1,17 +1,24 @@
 <template>
     <div class="file-container">
-        <filelist/>
+        <filelist :files='filelist'/>
     </div>
 </template>
 <script>
 import filelist from '../../components/filelist'
+import * as api from '../../api/desk_api'
 export default {
     components: {
         filelist
     },
     data () {
         return {
+            filelist: []
         }
+    },
+    created () {
+        api.getFilelist().then((data) => {
+            this.filelist = data
+        })
     }
 }
 </script>
