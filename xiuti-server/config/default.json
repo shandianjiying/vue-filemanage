@@ -1,0 +1,16 @@
+{
+  "apiPort": 8899,
+  "managePort": 9999,
+  "db":{
+    "schema": "xiuti",
+    "user": "root",
+    "password": "",
+    "config": {
+      "host": "localhost",
+      "port": "3306",
+      "dialect": "mysql",
+      "timezone": "+08:00",
+      "logging": true
+    }
+  }
+}
