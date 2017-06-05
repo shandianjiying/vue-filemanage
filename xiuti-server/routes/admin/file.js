@@ -1,6 +1,8 @@
-var express = require('express');
-var router = express.Router();
-
+const express = require('express');
+const router = express.Router();
+const models = require('../../middleware/database')
+const path = require('path');
+const fs = require('fs');
 /* GET home page. */
 router.get('/files', function(req, res, next) {
   var files = [{
@@ -43,5 +45,16 @@ router.get('/files', function(req, res, next) {
   res.send(files);
   console.log('files');
 });
+
+router.post('/files',(req,res)=>{
+  var file = req.body;
+  if(fs.existsSync(__dirname+'/system'+file.name)){
+      res.send('已经有此文件夹！');
+  }else{
+      fs.mkdirSync(__dirname+'/system'+file.name);
+      var result = models.FilePath.create(file);
+      res.send(result);
+  }
+})  
 
 module.exports = router;

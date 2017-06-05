@@ -1,14 +1,19 @@
 <template>
     <div class="toolbar">
-        <button v-on:click="addFile"></button>
+        <div class="btn-group">
+            <el-button type="primary" icon="plus" v-on:click="addFile">新建文件夹</el-button>
+        </div>
     </div>
 </template>
 
 <script>
-
+import * as api from '../../api/desk_api'
 export default {
     name: 'Toolbar',
-    components: {
+    methods: {
+        addFile: function (event) {
+            api.addFile({filename: 'aa'})
+        }
     }
 }
 </script>
@@ -16,6 +21,9 @@ export default {
 .toolbar {
     height: 50px;
     line-height: 50px;
-    border-radius: 0px !important;
+    border-radius: 1px solid grey !important;
+    .btn-group {
+        margin: 0 10px;
+    }
 }
 </style>

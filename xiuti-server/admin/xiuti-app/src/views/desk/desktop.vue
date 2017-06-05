@@ -1,14 +1,17 @@
 <template>
     <div class="file-container">
+        <Toolbar />
         <filelist :files='filelist'/>
     </div>
 </template>
 <script>
 import filelist from '../../components/filelist'
+import { Toolbar } from '../../components/toolBar/index.js'
 import * as api from '../../api/desk_api'
 export default {
     components: {
-        filelist
+        filelist,
+        Toolbar
     },
     data () {
         return {

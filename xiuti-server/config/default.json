@@ -2,9 +2,9 @@
   "apiPort": 8899,
   "managePort": 9999,
   "db":{
-    "schema": "xiuti",
+    "schema": "xt",
     "user": "root",
-    "password": "",
+    "password": "root",
     "config": {
       "host": "localhost",
       "port": "3306",

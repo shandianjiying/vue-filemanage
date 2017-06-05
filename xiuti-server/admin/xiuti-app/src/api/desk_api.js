@@ -6,3 +6,11 @@ export function getFilelist () {
         method: 'get'
     })
 }
+
+export function addFile (file) {
+    return httpRequest({
+        url: 'file/files',
+        method: 'post',
+        data: file
+    })
+}
