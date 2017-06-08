@@ -4,14 +4,15 @@ export default {
         filelist: []
     },
     mutations: {
-        getFilelist (state) {
-            state.filelist = [{ filename: '111', path: 'c:/aaa/aaa' }]
+        getFilelist (state, payLoad) {
+            state.filelist = payLoad
         }
     },
     actions: {
         getFilelist (context) {
-            api.getFilelist()
-            context.commit('getFilelist')
+            api.getFilelist().then(function (data) {
+                context.commit('getFilelist', data)
+            })
         }
     }
 }

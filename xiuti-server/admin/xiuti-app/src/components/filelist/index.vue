@@ -2,7 +2,7 @@
     <div class="list-container">
         <div class="file-item" v-for="file in files">
             <div class="file-image img-large"></div>
-            <div class="file-name">{{file.name}}</div>
+            <div class="file-name">{{file.filename}}</div>
         </div>
     </div>
 </template>

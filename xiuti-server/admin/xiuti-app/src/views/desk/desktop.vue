@@ -1,27 +1,29 @@
 <template>
     <div class="file-container">
         <Toolbar />
-        <filelist :files='filelist'/>
+        <filelist v-if="fileList" :files='fileList'/>
     </div>
 </template>
 <script>
 import filelist from '../../components/filelist'
 import { Toolbar } from '../../components/toolBar/index.js'
-import * as api from '../../api/desk_api'
+// import * as api from '../../api/desk_api'
+import { mapState } from 'vuex'
 export default {
     components: {
         filelist,
         Toolbar
     },
-    data () {
-        return {
-            filelist: []
-        }
-    },
+    computed: mapState({
+        fileList: state => state.desk.filelist
+    }),
     created () {
-        api.getFilelist().then((data) => {
-            this.filelist = data
-        })
+        this.fetchData()
+    },
+    methods: {
+        fetchData () {
+            this.$store.dispatch('getFilelist')
+        }
     }
 }
 </script>
