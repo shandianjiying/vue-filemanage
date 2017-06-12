@@ -10,8 +10,8 @@ const util = require('util')
 // 获取文件夹
 router.get('/files', function(req, res, next) {
     if(req.query.id){
-        models.FilePath.findAll({
-            where:{parentFile:req.query.id}
+        models.Picture.findAll({
+            where:{FilePathId:req.query.id}
         }).then(function(result){
             res.send(result);
         })
@@ -81,7 +81,8 @@ router.post('/upload',(req,res)=>{
             models.Picture.create({
                 picName:avatarName,
                 direction:fields.parentDir+avatarName,
-                status:true
+                status:true,
+                FilePathId:fields.fileId
             })
             res.send({
                 code: 200,

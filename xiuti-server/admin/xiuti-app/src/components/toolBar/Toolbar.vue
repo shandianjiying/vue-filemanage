@@ -8,6 +8,7 @@
                 action="http://localhost:9999/admin/file/upload"
                 :show-file-list="false"
                 :before-upload="beforeUpload"
+                :on-success="complete"
                 :data="params"
                 multiple>
                 <el-button type="primary">点击上传</el-button>
@@ -31,7 +32,8 @@ export default {
     data: function () {
         return {
             params: {
-                parentDir: ''
+                parentDir: '',
+                fileId: ''
             }
         }
     },
@@ -70,6 +72,10 @@ export default {
         },
         beforeUpload: function (file) {
             this.params.parentDir = recursion.getFilePath()
+            this.params.fileId = this.$store.state.breadCrumb.breadCrumb.id
+        },
+        complete: function (res, file, filelist) {
+            this.$store.dispatch('getFilelist', this.params.fileId)
         },
         crumbHandler: function (crumb) {
             this.$store.commit('emptyLayer')

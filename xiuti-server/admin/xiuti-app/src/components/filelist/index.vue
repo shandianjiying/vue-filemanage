@@ -1,19 +1,42 @@
 <template>
-    <div class="list-container">
-        <div class="file-item" v-for="file in files" v-on:click="enterFile(file)">
-            <div class="file-image img-large"></div>
-            <div class="file-name">{{file.filename}}</div>
+    <div>
+        <div class="list-container">
+            <div class="file-item" v-for="file in files" v-on:click="enterFile(file)">
+                <div v-if="file.filename" class="file-image img-large"></div>
+                <div v-if="file.filename" class="file-name">{{file.filename}}</div>
+                <div v-if="file.picName" class="file-image"><img v-bind:src="path+file.direction" /></div>
+                <div v-if="file.picName" class="file-name">{{file.picName}}</div>
+            </div>
         </div>
+        <el-dialog title="提示" :visible.sync="dialogVisible" size="tiny" >
+            <img class="preview-img" v-bind:src="img" />
+            <span slot="footer" class="dialog-foot  er">
+                <el-button @click="dialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+            </span>
+        </el-dialog>
     </div>
 </template>
 <script>
     export default {
         name: 'filelist',
         props: ['files'],
+        data: function () {
+            return {
+                path: 'http://localhost:9999/system',
+                dialogVisible: false,
+                img: ''
+            }
+        },
         methods: {
             enterFile: function (file) {
-                this.$store.dispatch('getFilelist', file.id)
-                this.$store.commit('addLayer', file)
+                if (file.filename) {
+                    this.$store.dispatch('getFilelist', file.id)
+                    this.$store.commit('addLayer', file)
+                } else {
+                    this.dialogVisible = true
+                    this.img = this.path + file.direction
+                }
             }
         }
     }
@@ -57,5 +80,9 @@
                 font-size: 12px;
             }
         }
+    }
+    .preview-img {
+        height: 100%;
+        width: 100%;
     }
 </style>
