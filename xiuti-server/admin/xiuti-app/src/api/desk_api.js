@@ -1,8 +1,8 @@
 import { httpRequest } from '../service/httpService'
 
-export function getFilelist () {
+export function getFilelist (id) {
     return httpRequest({
-        url: 'file/files',
+        url: 'file/files?id=' + id,
         method: 'get'
     })
 }

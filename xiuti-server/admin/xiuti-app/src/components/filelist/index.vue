@@ -1,6 +1,6 @@
 <template>
     <div class="list-container">
-        <div class="file-item" v-for="file in files">
+        <div class="file-item" v-for="file in files" v-on:click="enterFile(file)">
             <div class="file-image img-large"></div>
             <div class="file-name">{{file.filename}}</div>
         </div>
@@ -9,8 +9,15 @@
 <script>
     export default {
         name: 'filelist',
-        props: ['files']
+        props: ['files'],
+        methods: {
+            enterFile: function (file) {
+                this.$store.dispatch('getFilelist', file.id)
+                this.$store.commit('addLayer', file)
+            }
+        }
     }
+    
 </script>
 <style rel="stylesheet/scss" lang="scss" scoped>
     .list-container {

@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const app = express();
 
 app.use('/system',express.static(path.join(__dirname, '../system')));
+app.use('/system',express.static(path.join(__dirname, '../public/cache')));
+
 app.use(express.query());
 app.use(bodyParser.json()); // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({ // to support URL-encoded bodies

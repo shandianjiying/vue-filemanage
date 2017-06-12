@@ -4,13 +4,19 @@ export default {
         filelist: []
     },
     mutations: {
+        // 查询根目录所有文件节点
         getFilelist (state, payLoad) {
             state.filelist = payLoad
         }
     },
     actions: {
-        getFilelist (context) {
-            api.getFilelist().then(function (data) {
+        // 查询根目录所有文件节点
+        getFilelist (context, fileId) {
+            let id = ''
+            if (fileId) {
+                id = fileId
+            }
+            api.getFilelist(id).then(function (data) {
                 context.commit('getFilelist', data)
             })
         }
