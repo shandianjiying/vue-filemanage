@@ -1,7 +1,7 @@
 <template>
     <div class="file-container">
-        <Toolbar />
-        <filelist v-if="fileList" :files='fileList'/>
+        <Toolbar></Toolbar>
+        <filelist v-if="fileList" :files='fileList'></filelist>
     </div>
 </template>
 <script>

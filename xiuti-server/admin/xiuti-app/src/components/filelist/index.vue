@@ -8,9 +8,9 @@
                 <div v-if="file.picName" class="file-name">{{file.picName}}</div>
             </div>
         </div>
-        <el-dialog title="提示" :visible.sync="dialogVisible" size="tiny" >
+        <el-dialog title="提示" :visible.sync="dialogVisible" size="small" >
             <img class="preview-img" v-bind:src="img" />
-            <span slot="footer" class="dialog-foot  er">
+            <span slot="footer" class="dialog-footer">
                 <el-button @click="dialogVisible = false">取 消</el-button>
                 <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
             </span>
